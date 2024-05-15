@@ -1,6 +1,6 @@
 FROM rabbitmq:management
 
-COPY cluster-entrypoint.sh /usr/local/bin/
-COPY allow_guest.conf /etc/rabbitmq/conf.d/
+COPY --chmod=555 cluster-entrypoint.sh /usr/local/bin/
+COPY --chown=rabbitmq:rabbitmq allow_guest.conf /etc/rabbitmq/conf.d/
 
 ENTRYPOINT ["/usr/local/bin/cluster-entrypoint.sh"]
