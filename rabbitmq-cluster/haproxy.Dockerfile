@@ -1,3 +1,3 @@
 FROM haproxy:latest
 
-COPY --chmod=600 haproxy.cfg /usr/local/etc/haproxy/
+COPY --chmod=600 --chown=haproxy:haproxy haproxy.cfg /usr/local/etc/haproxy/
