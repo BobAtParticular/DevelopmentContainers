@@ -8,7 +8,7 @@ services:
     hostname: mssql
     environment:
       - ACCEPT_EULA=Y
-      #- MSSQL_SA_PASSWORD=${SA_PASSWORD}
+      - MSSQL_SA_PASSWORD=${SA_PASSWORD}
       - TZ=America/Los_Angeles
       - MSSQL_COLLATION=SQL_Latin1_General_CP1_CS_AS
     volumes:
