@@ -1,3 +1,12 @@
+if not exists(select * from sys.database_principals where name = 'dev')
+
+CREATE LOGIN [dev] 
+WITH PASSWORD = 'password',
+CHECK_POLICY = OFF;
+
+ALTER SERVER ROLE sysadmin ADD MEMBER [dev] ;  
+GO  
+
 IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'nservicebus')
   BEGIN
     CREATE DATABASE [nservicebus]
