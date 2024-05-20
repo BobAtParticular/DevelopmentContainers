@@ -1,11 +1,20 @@
-CREATE DATABASE nservicebus1;
-go
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'nservicebus')
+  BEGIN
+    CREATE DATABASE [nservicebus]
+  END
+  GO
 
-CREATE DATABASE nservicebus2;
-go
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'nservicebus1')
+  BEGIN
+    CREATE DATABASE [nservicebus1]
+  END
+  GO
 
-CREATE DATABASE nservicebus;
-go
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'nservicebus2')
+  BEGIN
+    CREATE DATABASE [nservicebus2]
+  END
+  GO
 
 USE nservicebus;
 go

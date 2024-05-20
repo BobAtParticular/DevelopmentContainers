@@ -2,7 +2,10 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
 
 ARG SA_PASSWORD
 
-ENV SA_PASSWORD=$SA_PASSWORD
+ENV ACCEPT_EULA=Y
+ENV MSSQL_SA_PASSWORD=$SA_PASSWORD
+
+USER root
 
 # Create a config directory
 RUN mkdir -p /usr/config
