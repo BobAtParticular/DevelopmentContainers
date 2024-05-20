@@ -34,7 +34,7 @@ services:
   mssql-init:
     image: mssql-init
     build:      
-      dockerfile_inline: init.Dockerfile
+      dockerfile: init.Dockerfile
     container_name: mssql-init
     environment:
       - SQLCMDSERVER=mssql
