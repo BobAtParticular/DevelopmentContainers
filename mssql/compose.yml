@@ -27,7 +27,7 @@ services:
     build: 
       context: https://github.com/microsoft/mssql-docker.git
       dockerfile: linux/mssql-tools/Dockerfile.alpine
-    container-name: mssql-tools
+    container_name: mssql-tools
     restart: "no"
     entrypoint: ["bash", "-c"]
 
