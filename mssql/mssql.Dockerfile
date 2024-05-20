@@ -4,8 +4,15 @@ ARG SA_PASSWORD
 
 ENV SA_PASSWORD=$SA_PASSWORD
 
-ADD initdata.sql /opt/mssql-scripts/000_create_db.sql
+# Create a config directory
+RUN mkdir -p /usr/config
+WORKDIR /usr/config
 
-RUN ( /opt/mssql/bin/sqlservr --accept-eula & ) | grep -q "Service Broker manager has started" \
-    && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -i /opt/mssql-scripts/000_create_db.sql \
-    && pkill sqlservr
+# Bundle config source
+COPY . /usr/config
+
+# Grant permissions for to our scripts to be executable
+RUN chmod +x /usr/config/entrypoint.sh
+RUN chmod +x /usr/config/configure-db.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
