@@ -24,7 +24,8 @@ services:
 
   mssql-tools:
     image: mssql/tools
-    build: https://github.com/microsoft/mssql-docker.git
+    build: 
+      context: https://github.com/microsoft/mssql-docker.git
       dockerfile: linux/mssql-tools/Dockerfile.alpine
     container-name: mssql-tools
     restart: "no"
