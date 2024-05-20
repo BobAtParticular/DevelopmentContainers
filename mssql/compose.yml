@@ -1,18 +1,53 @@
 services:
 
   mssql:
-    build:
-      dockerfile: mssql.Dockerfile
-      args:
-        - SA_PASSWORD=${SA_PASSWORD}
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql    
     hostname: mssql
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=${SA_PASSWORD}
+      - MSSQL_SA_PASSWORD=$SA_PASSWORD
       - TZ=America/Los_Angeles
       - MSSQL_COLLATION=SQL_Latin1_General_CP1_CS_AS
-    volumes:
-      - mssql:/var/opt/mssql
+      - SQLCMDSERVER=localhost
+      - SQLCMDUSER=SA
+      - SQLCMDPASSWORD=$SA_PASSWORD
+    restart: unless-stopped
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    networks:
+      - mysqlnet
 
-volumes:
-  mssql:
+  mssql-tools:
+    image: mssql/tools
+    build: https://github.com/microsoft/mssql-docker.git
+      dockerfile: linux/mssql-tools/Dockerfile.alpine
+    container-name: mssql-tools
+    restart: "no"
+    entrypoint: ["bash", "-c"]
+
+  mssql-init:
+    image: mssql-init
+    build:      
+      dockerfile_inline: init.Dockerfile
+    container_name: mssql-init
+    environment:
+      - SQLCMDSERVER=mssql
+      - SQLCMDUSER=SA
+      - SQLCMDPASSWORD=$SA_PASSWORD
+    depends_on:
+      mssql:
+        condition: service_healthy
+      mssql-tools:
+        condition: service_completed_successfully
+    restart: "no"
+    networks:
+      - mysqlnet
+
+networks:
+  mysqlnet:
+    driver: bridge
