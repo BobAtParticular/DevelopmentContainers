@@ -10,11 +10,18 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: $ROOT_PASSWORD
     healthcheck:
-      test: mongosh --norc --quiet --host=localhost:27017 --eval "db.getMongo()"
+      test: 
+        [
+          "CMD",
+          "mongo",
+          "--quiet",
+          "--eval",
+          "'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'",
+        ]
       interval: 10s
-      timeout: 3s
-      retries: 10
-      start_period: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
     ports:
       - 27017:27017
     networks:
