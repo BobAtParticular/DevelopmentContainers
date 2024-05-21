@@ -29,8 +29,8 @@ services:
       dockerfile: linux/mssql-tools/Dockerfile.alpine
     container_name: mssql-tools
     restart: "no"
-    command: /bin/sh
-#    entrypoint: ["/bin/sh", "exit 0"]
+    #command: /bin/sh
+    entrypoint: ["/bin/sh", "-c"]
 
   mssql-init:
     image: mssql-init
