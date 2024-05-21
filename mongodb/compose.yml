@@ -1,7 +1,8 @@
 services:
 
   mongodb:
-    image: mongo:latest
+    build:      
+      dockerfile: mongodb.Dockerfile
     hostname: mongodb
     container_name: mongodb
     command: --bind_ip_all --replSet tr0
@@ -16,8 +17,6 @@ services:
       - 27017:27017
     networks:
       - mongodbnet
-    volumes:
-      - ./init-mongo.js:/docker-entrypoint-initdb.d
 
   mongodb-express:
     image: mongo-express:latest
