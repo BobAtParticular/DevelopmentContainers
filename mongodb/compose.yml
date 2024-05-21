@@ -7,14 +7,7 @@ services:
     command: --bind_ip_all --replSet tr0
     restart: unless-stopped
     healthcheck:
-      test: 
-        [
-          "CMD",
-          "mongo",
-          "--quiet",
-          "--eval",
-          "'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'",
-        ]
+      test: echo 'db.stats().ok' | mongo localhost:27017/test --quiet
       interval: 10s
       timeout: 10s
       retries: 5
