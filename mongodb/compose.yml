@@ -7,7 +7,7 @@ services:
     command: --bind_ip_all --replSet tr0
     restart: unless-stopped
     healthcheck:
-      test: echo 'db.stats().ok' | mongo localhost:27017/test --quiet
+      test: echo 'db.stats().ok' | mongosh localhost:27017/test --quiet
       interval: 10s
       timeout: 10s
       retries: 5
@@ -17,7 +17,7 @@ services:
     networks:
       - mongodbnet
     volumes:
-      - ./init-replicaSet.js:/docker-entrypoint-initdb.d/init-replicaSet.js:ro
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   mongodb-express:
     image: mongo-express:latest
