@@ -6,9 +6,6 @@ services:
     container_name: mongodb
     command: --bind_ip_all --replSet tr0
     restart: unless-stopped
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: $ROOT_PASSWORD
     healthcheck:
       test: 
         [
@@ -27,7 +24,7 @@ services:
     networks:
       - mongodbnet
     volumes:
-      - ./init-replicaSet.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./init-replicaSet.js:/docker-entrypoint-initdb.d/init-replicaSet.js:ro
 
   mongodb-express:
     image: mongo-express:latest
