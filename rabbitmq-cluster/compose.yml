@@ -3,6 +3,7 @@ services:
   rabbitmq1:
     build:
       dockerfile: rabbitmq.Dockerfile
+    container_name: rabbitmq1
     hostname: rabbitmq1
     networks:
       - rabbitnet
@@ -12,6 +13,7 @@ services:
   rabbitmq2:
     build:
       dockerfile: rabbitmq.Dockerfile
+    container_name: rabbitmq2
     hostname: rabbitmq2
     networks:
       - rabbitnet
@@ -24,6 +26,7 @@ services:
   rabbitmq3:
     build:
       dockerfile: rabbitmq.Dockerfile
+    container_name: rabbitmq3
     hostname: rabbitmq3
     networks:
       - rabbitnet
@@ -36,6 +39,8 @@ services:
   haproxy:
     build:
       dockerfile: haproxy.Dockerfile
+    container_name: haproxy
+    hostname: haproxy
     networks:
       - rabbitnet
     depends_on:
