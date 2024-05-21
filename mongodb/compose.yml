@@ -18,16 +18,23 @@ services:
     networks:
       - mongodbnet
 
+  # https://hub.docker.com/_/mongo-express
   mongodb-express:
     image: mongo-express:latest
     hostname: mongodb-express
     container_name: mongodb-express
     restart: unless-stopped
     environment:
-      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_SERVER: mongodb    
     depends_on:
       mongodb:
         condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:8081 || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
     ports:
       - 8081:8081
     networks:
