@@ -1,7 +1,7 @@
-FROM mssql/tools
+FROM mssql/tools:latest
 
 USER root
 
 COPY initdata.sql /
 
-ENTRYPOINT [ "/bin/bash", "-c", "sleep 10 && sqlcmd -i /initdata.sql"] 
+CMD /bin/bash -c sleep 10 && sqlcmd -i /initdata.sql
