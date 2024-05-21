@@ -29,6 +29,7 @@ services:
       dockerfile: linux/mssql-tools/Dockerfile.ubuntu2204
     container_name: mssql-tools
     restart: "no"
+    command: echo Done
 
   mssql-init:
     image: mssql-init
