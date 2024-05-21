@@ -10,7 +10,7 @@ services:
       - TZ=America/Los_Angeles
       - MSSQL_COLLATION=SQL_Latin1_General_CP1_CS_AS
       - SQLCMDSERVER=localhost
-      - SQLCMDUSER=SA
+      - SQLCMDUSER=sa
       - SQLCMDPASSWORD=$SA_PASSWORD
     restart: unless-stopped
     healthcheck:
@@ -38,7 +38,7 @@ services:
     container_name: mssql-init
     environment:
       - SQLCMDSERVER=mssql
-      - SQLCMDUSER=SA
+      - SQLCMDUSER=sa
       - SQLCMDPASSWORD=$SA_PASSWORD
     depends_on:
       mssql:
