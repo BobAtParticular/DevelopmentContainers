@@ -26,11 +26,9 @@ services:
     image: mssql/tools
     build: 
       context: https://github.com/microsoft/mssql-docker.git
-      dockerfile: linux/mssql-tools/Dockerfile.alpine
+      dockerfile: linux/mssql-tools/Dockerfile.ubuntu2204
     container_name: mssql-tools
     restart: "no"
-    #command: /bin/sh
-    entrypoint: ["/bin/sh", "-c"]
 
   mssql-init:
     image: mssql-init
