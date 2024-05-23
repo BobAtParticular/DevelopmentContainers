@@ -4,10 +4,8 @@ services:
     build:      
       dockerfile: mongodb.Dockerfile
     hostname: mongodb
-    extra_hosts:
-      - "workdocker.localdomain:127.0.0.1"
     container_name: mongodb
-    command: --bind_ip_all --replSet rs0
+    command: --bind_ip 0.0.0.0,$HOST_IP,$HOST_DOMAIN --replSet rs0
     restart: unless-stopped
     healthcheck:
       test: echo 'db.stats().ok' | mongosh localhost:27017/test --quiet

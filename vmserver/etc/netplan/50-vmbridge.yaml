@@ -1,0 +1,6 @@
+network:
+  bridges:
+    vmbridge:
+      dhcp4: true
+      interfaces:
+        - enp2s0

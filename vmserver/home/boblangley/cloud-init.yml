@@ -1,0 +1,6 @@
+users:
+  - default
+  - name: boblangley
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/+o6nTUENUvrj6F7BDxnQ1KLBzr+YauD0HINzCQHKWAaUl4tWv4SIoF34kyzl+ohg5b+UG6b5kSxQnk5sf63qSZsw4mEfJBBydPuwDf+QNsNYDowHQoFn5qPax+iv9rbrPzg1Lc9DIi9ij8/MTruCMX3EW8+wk8N/MhiS8qQf7NQNJRuGmuXkjpp0QGyj6Y1ewjzSyMnoT/rqNsoA/SAs58OVGDY5IuRxjD7WnynujajlNDFxD3HFMSz7e/i8H6Yso2HyWIRPjEwQc5AyjVJSetfaal6y+Y0YzadYpj08uBMsmlGNPMaNh7D+atz0DO2fmTEMFbMh9HDH5YlwFDtv boblangley
